@@ -1,0 +1,17 @@
+<p>Hello {{ user.first_name }} {{ user.last_name }}</p>
+{% if type == 'Deposit' %}
+  <p>Your Deposit request for {{ amount }}$ successfully completed. And now your current balance is {{ user.account.balance }}</p>
+{% elif type == 'Withdraw' %}
+  <p>Your Withdraw request for {{ amount }}$ successfully completed. And now your current balance is {{ user.account.balance }}</p>
+{% elif type == 'Transfer Money' %}
+  <p>Your Transfer request for {{ amount }}$ successfully completed. And now your current balance is {{ user.account.balance }}</p>
+{% elif type == 'Loan Request' %}
+  <p>Your Loan request for {{ amount }}$ has been sent to the admin. If approved, the {{ amount }}$ will be added to your balance.</p>
+
+{% elif type == 'LOAN APPROVED' %}
+  <p>Your Loan request for {{ amount }}$ has been Approved.Now your current balance is {{user.account.balance}}</p>
+{% endif %}
+
+
+<p>Thank you for begin with us</p>
+<p>Mamar Bank</p>
