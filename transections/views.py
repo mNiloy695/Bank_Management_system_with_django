@@ -206,17 +206,9 @@ class TransferMoneyView(TransectionCreateMinix):
         reciver_bank_account.save(update_fields=['balance'])
         sender_account.save(update_fields=['balance'])
         messages.success(self.request,f'You send {amount}$ to { reciver_account_no} sucessfully')
-        mail_subject='Transfer Money'
-        message=render_to_string('transections/mail.html',{
-            'user':self.request.user,
-            'type':'Transfer Money',
-            'amount':amount
-             
-        })
-        user_mail=self.request.user.email
-        mail=EmailMultiAlternatives(mail_subject,'',to=[user_mail])
-        mail.attach(message,'text/html')
-        mail.send()
+        send_mail(self.request.user,amount,'Transfer Money','Transfer Money')
+        # print(reciver_bank_account.user.email)
+        send_mail(reciver_bank_account.user,amount,'Recive Money','Recive Money')
         return super().form_valid(form)
 
 

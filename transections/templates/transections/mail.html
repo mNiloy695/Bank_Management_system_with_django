@@ -5,6 +5,8 @@
   <p>Your Withdraw request for {{ amount }}$ successfully completed. And now your current balance is {{ user.account.balance }}</p>
 {% elif type == 'Transfer Money' %}
   <p>Your Transfer request for {{ amount }}$ successfully completed. And now your current balance is {{ user.account.balance }}</p>
+{% elif type == 'Recive Money' %}
+  <p>You recive  {{ amount }}$ successfully from {{self.request.user.account.account_no}}. And now your current balance is {{ user.account.balance }}</p>
 {% elif type == 'Loan Request' %}
   <p>Your Loan request for {{ amount }}$ has been sent to the admin. If approved, the {{ amount }}$ will be added to your balance.</p>
 

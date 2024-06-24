@@ -1,11 +1,16 @@
 from django.shortcuts import render,redirect
-from django.views.generic import FormView
+from django.views.generic import FormView,UpdateView
 from django.urls import reverse_lazy
 from .forms import UserAccountForm
 from django.contrib.auth  import login
-from django.contrib.auth.views import LogoutView,LoginView
+from django.contrib.auth.views import LogoutView,LoginView,PasswordChangeView
 from .forms import UserAccountForm,UserUpdateForm
 from django.views import View
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 class UserCreationView(FormView):
     template_name='registration.html'
@@ -43,4 +48,27 @@ class UserBankAccountUpdateView(View):
             return redirect('profile')  # Redirect to the user's profile page
         return render(request, self.template_name, {'form': form})
 
+# def Password_change(request):
+#     if request.method=='POST':
+#         form=PasswordChangeForm(request,instance=request.POST)
+#         if form.is_valid():
+#             user=form.save()
+#             update_session_auth_hash(request,user)
+#             messages.success(request,'your password is sucessfully updated')
+#             return redirect('profile')
+#         else:
+#             messages.success(request,'please enter the correct information')
+#     else:
+#         form=PasswordChangeForm(request.user)
+#     return render(request,'pass_word.html',{'form':form})
+class Passs_Word_Change(LoginRequiredMixin,PasswordChangeView):
+    template_name='pass_word.html'
+    form_class=PasswordChangeForm
+    success_url=reverse_lazy('profile')
+
+
+
     
+
+
+
