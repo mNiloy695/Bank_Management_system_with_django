@@ -94,8 +94,7 @@ WSGI_APPLICATION = 'mamar_Bank.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgresql://mamar_bank_ipn8_user:wEHU5R4RMtk27K8v0Qpvka9lJ9R1Oe2Y@dpg-cpsgoat6l47c73e55l30-a.oregon-postgres.render.com/mamar_bank_ipn8',
-        
+        default='postgresql://postgres:postgres@localhost:5432/mysite',
     )
 }
 
